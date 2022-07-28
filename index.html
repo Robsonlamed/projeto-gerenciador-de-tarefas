@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Gerenciador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!--Animação-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link id="novaFolha" rel="stylesheet" href="assets/styles/estilo.css">
+    <script src="assets/js/logica.js"> </script>
+</head>
+
+<body>
+    <div class="fundoTemaEscuro">
+        <div class="faixaAmarela">
+            <div class="barra1">
+            </div>
+            <div id="fecharTela" class="areaDeLogin">
+                <div class="fundo">
+                    <div class="container-fluid p-0">
+                        <div class="row abertura m-0">
+                            <div class="col-1"></div>
+                            <div class="col-4 img-fluid mt-3 ">
+                                <img class="logoLogin" src="assets/img/logo-arnia.png"  alt="">
+                            </div>
+                            <div id="areaCadastro" class="col-4  logar mt-4" onclick="abrirCadastro()"> Cadastre-se</div>
+                            <div id="areaLogin" class="col-2 logar mt-4" onclick="abrirLogin()"> Login</div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row m-0">
+                            <div class="col-12 col-sm-6 mt-5">
+                                <p class="chamada">Gerencie suas tarefas com um software que foi feito para você</p>
+                                <p class="informacao">O Gerenciador Arnia é um espaço de trabalho de equipe pronto para
+                                    ambiente remoto em que o conhecimento e a colaboração andam lado a lado.</p>
+                            </div>
+                            <div class="col-12 col-sm-6 mt-5">
+                                <img class="img-fluid" src="assets/img/mock-up.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modalCadastro" class="modalCadastrar">
+                        <div class="container ">
+
+                            <div id="conteudoModal" class="conteudoLogin alert animate__animated">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <span>Faça seu cadastro</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="cancela">
+                                            <button id="cancelarCadastro" onclick="fecharCadastro();"> <img
+                                                    src="assets/img/close.png" width="14px" height="15px" alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="cadastro" action="">
+                                    <label for="">Usuário</label>  <br>
+                                    <input id="usuario" type="text" maxlength="15"><br>
+                                    <div id="usuarioJaCadastrado"></div>
+                                    <div id="requeridoUsuario">
+                                    </div>
+                                    <label for="">CPF</label>  <br>
+                                    <input id="cpf" oninput="mascara(this)" type="text"><br>
+                                    <div id="requeridoCPF">
+                                    </div>
+                                    <label for="">E-mail</label>  <br>
+                                    <input id="email" type="email" required><br>
+                                    <div id="requeridoEmail"></div>
+                                    <div id="emailJaCadastrado"></div>
+
+                                    <label for="">Senha</label>  <br>
+                                    <input id="senha" type="password" minlength="8" maxlength="8"><br>
+                                    <div id="requeridoSenha">
+                                    </div>
+                                    <div id="senhaNaoConfere">
+                                    </div>
+                                    <label for="">Repetir senha</label>  <br>
+                                    <input id="repetirSenha" type="password" maxlength="8"><br>
+                                    <div id="requeridoRepetirSenha">
+                                    </div>
+                                    <div id="senhaNaoConfere1">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 align-items-center mt-1 checkbox2">
+                                            <input class="checkbox1" id="checkbox" type="checkbox">
+                                            <Span> Eu li e aceito os termos e condições da Política de Privacidade e
+                                                Contrato de Prestação de Serviço</Span>
+                                        </div>
+                                        <div id="requeridoCheckbox">
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="row">
+                                    <div class="col-8 align-items-lef"></div>
+                                    <div class="col-2 align-items-center ms-2 mt-1">
+                                        <div class="salvar">
+                                            <button class="enviar" id="salvarCadastro"
+                                                onclick="cadastro('users', 'POST');">Enviar</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-9 align-items-lef"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modalLogin" class="modalLogar ">
+                        <div class="container ">
+                            <div id="conteudoModal" class="conteudoLogin alert animate__animated">
+
+                                <div class="row">
+                                    <div class="col-10">
+                                        <span>Login</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="cancela">
+                                            <button id="cancelarCadastro" onclick="fecharLogin();"> <img src="assets/img/close.png"
+                                                    width="14px" height="15px" alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <form class="formLogin" action="">
+                                    <label for="">Usuário</label>  <br>
+                                    <input id="usuarioLogin" type="text" maxlength="15"><br>
+                                    <div id="requeridoUsuarioEntrar">
+                                    </div>
+                                    <label for="">Senha</label>  <br>
+                                    <input id="senhaLogin" type="password" maxlength="8"><br>
+                                    <div id="requeridoSenhaEntrar">
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-12 align-items-center mt-3 checkbox2">
+                                        <div id="senhaInvalida" class="usuarioInvalido"></div>
+                                    </div>
+                                    <div class="col-12 align-items-center mt-3 checkbox2">
+                                        <div class="esqueciSenha" onclick="abrirEsqueciSenha();"> Esqueci minha senha.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8 align-items-left"></div>
+                                    <div class="col-2 align-items-center ms-2 mt-2">
+                                        <div class="salvar">
+                                            <button id="Entrar" class="enviar" onclick="validarLogin();">Entrar</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 align-items-left"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="modalRedefinirSenha" class="modalLogar">
+                        <div class="container ">
+                            <div id="conteudoModal" class="conteudoLogin alert animate__animated">
+
+                                <div class="row">
+                                    <div class="col-10">
+                                        <span>Redefinir Senha</span>
+                                    </div>
+                                    <div class="col-2 mt-1">
+                                        <div class="cancela">
+                                            <button id="cancelarCadastro" onclick="fecharRedefinirSenha();"> <img
+                                                    src="assets/img/close.png" width="14px" height="15px" alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <form class="formLogin" action="">
+                                    <div id="emailRecuperacao1">
+                                        <label for="">Digite seu e-mail cadastrado</label><br>
+                                        <input id="emailRecuperacao" type="text"><br>
+                                        <div id="emailRecuperacao2">
+                                        </div>
+                                    </div>
+                                    <div id="senhaRecuperacao1">
+                                        <label for="">Digite nova senha</label>  <br>
+                                        <input id="senhaRecuperacao" type="password" maxlength="8"><br>
+                                        <div id="requeridoSenhaRecuperacao">
+                                        </div>
+                                    </div>
+                                    <div id="repetirSenhaRecuperacao1">
+                                        <label for="">Repetir Senha</label>  <br>
+                                        <input id="repetirSenhaRecuperacao" type="password" maxlength="8"><br>
+
+                                        <div id="requeridoSenhaRecuperar">
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-8 align-items-left"></div>
+                                    <div class="col-2 align-items-center mt-2">
+                                        <div class="salvar">
+                                            <button id="recuperar" class="enviar1" onclick="recuperarSenha();">Enviar</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 align-items-left"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container conteudo1">
+                <div class="row">
+                    <div id="bemVindo" class="col-12 ms-0 mt-4 p-0 animate__animated bemVindo sejaBemVindo"></div>
+                    </div>
+                    <div class="row">
+                    <div id="light" class="contraste col-4 p-0 mt-4 mb-2" onclick="contrasteLight();"><i
+                            class="fa-solid fa-moon"></i> Dark</div>
+                    <div id="dark" class="contraste col-4 p-0 mt-4 mb-2" onclick="contrasteDark();"><i
+                            class="fa-solid fa-sun"></i> Light</div>
+                    <div class="col-7 p-0 mt-4">
+                        <div id="nomeUsuario" class="nomeDeUsuario"></div>
+                    </div>
+                    <div class="col-1 p-0 mt-4">
+                        <div id="sair" class="sair" onclick="deslogar()">Sair</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="logoColorido" class="col-3 mt-3 mb-4 p-0">
+                        <img class="img-fluid" src="assets/img/logo.png" alt="logo arnia">
+                    </div>
+                    <div id="logoBranca" class="col-3 mt-3 mb-4 p-0">
+                        <img class="img-fluid" src="assets/img/logo-arnia.png" alt="logo arnia">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2 p-0">
+                        <div class="gerenciador">
+                            <i class="fa-solid fa-clipboard-check "></i>
+                            <span> Gerenciador de Tarefas</span>
+                        </div>
+                        <div id="tarefa" class="novaTarefa" onclick="adicionarTarefa();">
+                            <button> + Adicionar tarefa </button>
+                        </div>
+                        <div id="filtro" class="salvar">
+                            <button onclick="abrirFiltro();"><i class="fa-solid fa-filter"></i> Filtro </button>
+                        </div>
+                        <div class="salvar">
+                            <button onclick="contador();">Limpar filtro</button>
+                            <p id="contador" class="contador"> 0 tarefas encontradas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <table>
+                        <thead class="cabecario">
+                            <tr>
+                                <th>Núm <i id="setaUp1" class="seta fa-solid fa-caret-up"onclick="printData('numero','asc');"></i><i id="setaDown1" class="seta fa-solid fa-caret-down"onclick="printData('numero','desc');"></i> </th>
+                                        
+                                    
+                                        
+                                <th>Descrição <i id="setaUp2" class="seta fa-solid fa-caret-up"
+                                        onclick="printData('descri', 'asc');"></i>
+                                    <i id="setaDown2" class="seta fa-solid fa-caret-down"
+                                        onclick="printData('descri','desc');"></i></th>
+                                <th>Data <i id="setaUp3" class="seta fa-solid fa-caret-up"
+                                        onclick="printData('data','asc');"></i>
+                                    <i id="setaDown3" class="seta fa-solid fa-caret-down"
+                                        onclick="printData('data', 'desc');"></i></th>
+                                <th>Status <i id="setaUp4" class="seta fa-solid fa-caret-up"
+                                        onclick="printData('stat','asc');"></i>
+                                    <i id="setaDown4" class="seta fa-solid fa-caret-down"
+                                        onclick="printData('stat', 'desc');"></i></th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tarefas" class="tarefas">
+                        </tbody>
+                    </table>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="modal" class="modalTarefa">
+        <div class="container ">
+            <div id="conteudoModal" class="conteudo alert animate__animated">
+                <div class="row">
+                    <div class="col-10 novaTarefaModal">
+                        <span id="adicionar"></span>
+                    </div>
+                    <div class="col-2 mt-1">
+                        <div class="cancela">
+                            <button id="cancelarCadastro" onclick="fechar();"> <img src="assets/img/close.png" width="14px"
+                                    height="15px" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="">
+                    <label for="">Número</label>  <br>
+                    <input id="num1" type="number"><br>
+                    <div id="requerido1">
+
+                    </div>
+                    <label for="">Descrição</label>  <br>
+                    <input id="descreve" type="text"><br>
+                    <div id="requerido2">
+
+                    </div>
+                    <label for="">Data</label>  <br>
+                    <input id="data" class="data1" type="date"><br>
+                    <div id="requerido3">
+
+                    </div>
+                    <label for="">Status</label>  <br>
+                    <select id="selecao" class="selecao1">
+                        <option hidden></option>
+                        <option>Concluído</option>
+                        <option>Em andamento</option>
+                        <option>Parado</option>
+                    </select><br>
+                    <div id="requerido4">
+
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-5 align-items-center mt-3">
+                    </div>
+                    <div class="col-3 align-items-center">
+                    </div>
+                    <div class="col-2 align-items-center mt-3">
+                        <div class="salvar">
+                            <button class="salvar1" id="salvar" onclick="salva();">Salvar</button>
+                        </div>
+                    </div>
+                    <div class="col-2 align-items-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-3">
+                <div class="fixed-bottom alerta-1 alert d-none animate__animated" id="alerta-sucesso"></div>
+            </div>
+            <div class="col-6"></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="fixed-bottom position-fixed alerta-2 alert d-none animate__animated" id="alerta-erro">
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-3">
+                <div class="fixed-bottom alerta-3 alert d-none animate__animated" id="alerta-remove"></div>
+            </div>
+            <div class="col-6"></div>
+        </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-3">
+                <div class="fixed-bottom alerta-4 alert d-none animate__animated" id="alerta-edicao"></div>
+            </div>
+            <div class="col-6"></div>
+        </div>
+    </div>
+
+    <div id="modalExclusao" class="modalExclusao1">
+        <div class="exclusao">
+            <div class="row">
+                <div class="col-12 ms-2">
+                    <p>Tem certeza que deseja excluir esta tarefa?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3 ">
+                    <div class="sim">
+                        <button id="sim" class="sim" onclick="removeTarefa();">Sim</button>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="nao">
+                        <button id="nao" class="nao" onclick="naoExcluirTarefa();">Não</button>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modalFilter" id="modalFiltrar">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 conteudoFilter">
+                    <div class="Filter">
+
+                        <div class="row">
+                            <div class="col-10">
+                                <span>Filtrar tarefa</span>
+                            </div>
+                            <div class="col-2 mt-1">
+                                <div class="cancela">
+                                    <button id="cancelarCadastro" onclick="fecharFilter();"> <img src="assets/img/close.png"
+                                            width="14px" height="15px" alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form action="">
+                            <label for="">Palavra-chave</label>  <br>
+                            <div class="search">
+                                <input type="text" id="palavraFiltro" placeholder="Pesquisar">
+                            </div>
+                            <label for="">Status</label>  <br>
+                            <select id="statusFilter" class="selecaoFilter">
+                                <option hidden></option>
+                                <option>Concluído</option>
+                                <option>Em andamento</option>
+                                <option>Parado</option>
+                            </select><br>
+
+                            <label for="">Data</label>  <br>
+                            <input id="dataFiltro" class="dataFilter" type="date"><br>
+                            <div id="requerido3">
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-3 mt-3">
+                        <div class="salvar">
+                            <button id="filtrarStatus" onclick="printData();">Filtrar</button>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+      
+      <script>(function(d){var s = d.createElement("script");s.setAttribute("data-account", "sa16PsDTSS");s.setAttribute("src", "https://cdn.userway.org/widget.js");(d.body || d.head).appendChild(s);})(document)</script><noscript>Please ensure Javascript is enabled for purposes of <a href="https://userway.org">website accessibility</a></noscript> -->
+    </div>
+    </div>
+</body>
+
+</html>
+
+<!-- icone contraste: <i class="fa-solid fa-circle-half-stroke"></i>
+icone lua: <i class="fa-solid fa-moon"></i>
+icone sol: <i class="fa-solid fa-sun"></i> -->

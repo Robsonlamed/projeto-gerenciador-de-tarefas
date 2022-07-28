@@ -1,0 +1,488 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    background: url("barra-amarela.png") bottom right no-repeat;
+    background-attachment: fixed;
+}
+.areaDeLogin {
+    display: block;
+}
+.login {
+    text-align: right;
+}
+/* .faixaAmarela {
+    background: url("barra-amarela.png") bottom right no-repeat rgba(255, 255, 255, 0);
+    background-attachment: fixed;
+} */
+
+/* .fundoTemaEscuro {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+} */
+
+.fundo {
+    width: 100%;
+    height: 100%;
+    background-color: #1a1033;
+    position: fixed;
+
+}
+.abertura {
+    background-color: #0e1327;
+    width: 100%;
+    height: 90px;
+    border-bottom: 8px solid #fbb04d;
+}
+
+.logoLogin {
+    width: 140px;
+    height: 42px;
+}
+.logar {
+    color: #fbb04d;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: right;
+}
+.logar:hover{
+    color: #c8780f;
+    cursor: pointer;
+}
+.chamada {
+    color: #fbb04d;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 57px;
+}
+.informacao {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 34px;
+    margin-top: 30px;
+}
+.barra1 {
+    position: fixed;
+    background-color: #68519D;
+    width: 41px;
+    height: 100%;
+    border-right: 10px solid #b3a7b4;
+}
+.gerenciador {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.gerenciador span, .Filter span,  .novaTarefa span,
+.gerenciador i, .conteudo span, .exclusao p{
+    font-weight: 800;
+    color: #68519D;
+    line-height: 30px;
+    font-size: 20px;
+    margin-left: 5px;
+}
+.bemVindo{
+    font-weight: 400;
+    color: #68519D;
+    line-height: 30px;
+    font-size: 20px;
+    margin-left: 5px;
+}
+.novaTarefa button, .contar, .salvar button {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #68519D;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #68519D;
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    padding: 5px 30px 5px 30px;
+    background: white;
+    margin-bottom: 5px;
+}
+.novaTarefa button:hover, .filtrar button:hover,
+.salvar button:hover, .sim button:hover, .nao button:hover {
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #68519D;
+    border: 1px solid #68519D;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.contador {
+    font-weight: bold;
+    color: #2C2661;
+    line-height: 30px;
+    font-size: 14px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+table {
+    width: 85%;
+    margin-bottom: 50px;
+}
+.nomeDeUsuario, .sair, .contraste {
+    font-size: 18px;
+    font-weight: 400;
+    color: #68519D;
+    text-align: right;
+}
+.contraste {
+    text-align: left;
+}
+.cabecario, .tarefas, .linhas {
+    font-size: 15px;
+    font-weight: 500;
+    color: #2C2661;
+}
+.titulos {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2C2661;
+}
+td,th, .linhas {
+    text-align: left;
+    padding: 8px 8px 8px 0px;
+}
+th i {
+    margin-left: 3px;
+}
+tbody>tr:nth-child(even), .linhas>.linha1:nth-child(even) {
+    background-color: #f5f5f5;
+}
+.modalTarefa, .modalFilter, .modalExclusao1,
+.modalCadastrar, .modalLogar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: 100%; */
+    padding: 5%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+}
+.conteudo, .conteudoFilter, .exclusao{
+    width: 40%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 0 auto;
+}
+.conteudoLogin{
+    width: 40%;
+    height: auto;
+    background-color: #300d45;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 0 auto;
+}
+.conteudoLogin span {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fbb04d;
+}
+.checkbox2 {
+    display: flex;
+    align-items: flex-start;
+}
+.cadastro, .checkbox2 span, .formLogin, .esqueciSenha{
+    font-size: 12px;
+    font-weight: 300;
+    color: #ffffff;
+}
+.cadastro input, .formLogin input {
+    height: 25px;
+    border-radius: 5px;
+}
+.checkbox1 {
+    margin-right: 10px;
+    margin-bottom: 20px;
+    width: 15px;
+    height: 15px;
+}
+.iconeEdicao, .iconeRemove {
+    font-weight: lighter;
+}
+.checkbox2 span:hover, .sair:hover, select, .esqueciSenha:hover,
+.cancela button:hover, .cancelaFilter button:hover, .contraste:hover, .seta:hover{
+    color:rgb(192, 192, 192);
+    cursor: pointer;    
+}
+.iconeRemove:hover {
+    color:#ff0000;
+    cursor: pointer;    
+}
+.iconeEdicao:hover{
+    color:#008000;
+    cursor: pointer;    
+}
+form {
+    font-size: 14px;
+    font-weight: 400;
+    color: #68519D;
+}
+input {
+    width: 100%;
+    height: 50px;
+    color: #2C2661;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 3px 0px 3px 15px;
+    border-radius: 10px;
+    border: 1px solid #68519D;
+    margin: 3px;
+}
+.data1, .selecao1, .selecaoFilter, .dataFilter {
+    text-align: center;
+    color: #2C2661;
+    font-size: 14px;
+    font-weight: 500;
+    width: 40%;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #68519D;
+}
+select option {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    color: #68519D;
+    border-radius: 10px;
+}
+.cancela button, .cancelaFilter button {
+    border-radius: 100%;
+    padding: 6px 11px;
+    background-color: #f8b14e;
+    border: none;
+    margin-left: 10px;
+}
+.alerta-1 {
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    background-color: #694fa0;
+    color: #ffffff;
+    margin-left: 70px
+}
+.alerta-2 {
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    background-color: #f8b14e;
+    color: #ffffff;
+    margin-left: 70px;
+}
+.alerta-3 {
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    background-color: #ff6a20;
+    color: #ffffff;
+    margin-left: 70px
+}
+.alerta-4 {
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    background-color: #4a22fd;
+    color: #ffffff;
+    margin-left: 70px
+}
+.sim button {
+    font-size: 14px;
+    font-weight: 400;
+    color: #694FA0;
+    border: 1px solid #694FA0;
+    border-radius: 20px;
+    padding: 5px 22px 5px 22px;
+    float: left;
+}
+.nao button {
+    font-size: 14px;
+    font-weight: 400;
+    color: #694FA0;
+    border: 1px solid #694FA0;
+    border-radius: 20px;
+    padding: 5px 22px 5px 22px;
+    float: right;
+}
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+.orange {
+    color: orange;
+}
+#light {
+    display: block;
+}
+#dark {
+    display: none;
+}
+#logoColorido {
+    display: block;
+}
+#logoBranca {
+    display: none;
+}
+.seta {
+    margin-left: 5px;
+}
+#modalRedefinirSenha {
+    display: none;
+}
+
+@media screen and (max-width: 416px) {
+    body {
+        background: url("");
+    }
+    .chamada {
+        color: #fbb04d;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 30px;
+        text-align: center;
+    }
+    .informacao {
+        font-size: 18px;
+        color: #fff;
+        font-weight: 200;
+        line-height: 24px;
+        margin-top: 30px;
+        text-align: center;
+    }
+    .logar {
+        color: #fbb04d;
+        font-size: 14px;
+        font-weight: 200;
+        text-align: right;
+    }
+    .logoLogin {
+        margin-top: 5px;
+        width: 84px;
+        height: 24px;
+    }
+    .abertura {
+        background-color: #0e1327;
+        width: 100%;
+        height: 70px;
+        border-bottom: 5px solid #fbb04d;
+    }
+    .modalCadastrar, .modalLogar {
+        padding-top: 20%;
+    }
+    .conteudoLogin span{
+        font-size: 16px;
+    }
+    .checkbox2 span {
+        font-size: 11px;
+    }
+    .cancela button{
+        margin-left: -5px;
+    }
+    .enviar{
+        margin-left: -120px;
+    }
+    .enviar1{
+        margin-left: -105px;
+    }
+    .barra1 {
+        position: fixed;
+        background-color: #68519D;
+        width: 15px;
+        height: 100%;
+        border-right: 4px solid #b3a7b4;
+    }
+    .sejaBemVindo, .nomeDeUsuario, .sair, .contraste {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
+        text-align: left;
+    }
+    .conteudo1, .conteudo, .conteudoFilter, .exclusao, .conteudoLogin {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .conteudo1 {
+        width: 85%;
+        margin: 0 auto;
+    }
+    .titulos{
+        font-size: 14px;
+        margin-left: 5px;
+    }
+    .linhas {
+        font-size: 12px;
+        font-weight: 600;
+        color: #2C2661;
+        margin-left: 10px;
+    }
+    .descricao, .status, .datas {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 70px;
+    }
+    .datas1{
+        font-size: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 70px
+    }
+    .salvar1 {
+        margin-left: -40px;
+    }
+    .nao {
+        margin-left: 100px;
+    }
+    .sim {
+        margin-left: -30px;
+    }
+    table {
+        width: 110%;
+        margin-left: -10px;
+        margin-bottom: 50px;
+    }
+    td,th, .linhas {
+        text-align: left;
+        padding: 8px 2px 8px 2px;
+        font-size: 11px;
+    }
+    .data1, .selecao1, .selecaoFilter, .dataFilter {
+        width: 65%;
+    }
+    .contador {
+        font-size: 12px;
+        margin-left: 5px;
+        margin: 0px;
+    }
+    .seta {
+        margin-left: 2px;
+    }
+    /* @media (hover: none) {
+        .logar:hover, .salvar button:hover, .sim button:hover, .nao button:hover, .iconeEdicao:hover, .iconeRemove:hover, .checkbox2 span:hover, .sair:hover, select, .esqueciSenha:hover,
+        .cancela button:hover, .cancelaFilter button:hover, .contraste:hover, .seta:hover,
+        .novaTarefa button:hover, .filtrar button:hover { 
+    } */
+.novaTarefa button, .contar, button {
+    margin-bottom: 15px;
+}
+}
+
