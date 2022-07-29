@@ -1,13 +1,22 @@
 // json-server --watch db.json
 
-//  variavel para usar o modal do filtro
+//  variavel para usar fazer a condição de imprimir o filtro 
 var displayFiltro = 0
+
 //  variavel para usar na função removeTarefa
 var excluir
+
+//  variavel para usar na função validar login
 var usuario
+
+//  variavel para usar na condiçao para *campo obrigatorio
 var campoObrigatorio = "red"
+
+//  variaveis para usar cor na função de ordenação
 var ordenação1 = "#1a1033"
 var ordenação2 = "white"
+
+//  função para deslogar
 function deslogar() {
     var logar = document.getElementById('areaLogin');
     logar.style.display = "block"
@@ -20,37 +29,13 @@ function deslogar() {
         sucesso.classList.remove("d-none")
     
 }
-//  função para abrir a aba de nova tarefa
-function adicionarTarefa() {
-    var modal = document.getElementById('modal');
-    modal.style.display = "block";
 
-    //  Limpando os dados do formulario de nova tarefa
-    document.getElementById("adicionar").innerHTML = "Adicionar nova tarefa"
-    document.getElementById("num1").value = ""
-    document.getElementById("descreve").value = ""
-    document.getElementById("data").value = ""
-    document.getElementById("selecao").value = ""
-
-    document.getElementById("requerido1").style.display = "none"
-    document.getElementById("requerido2").style.display = "none"
-    document.getElementById("requerido3").style.display = "none"
-    document.getElementById("requerido4").style.display = "none"
-
-    sucesso = document.getElementById('conteudoModal')
-    sucesso.classList.add("animate__slideInDown")
-    // window.setTimeout(() => {
-    //     sucesso.classList.remove("animate__rubberBand")
-    // },1900)
-    document.getElementById("salvar").onclick = () => {
-        salva("novaTarefa", "POST")
-    }
-}
+//  função para abrir o modal de cadastro
 function abrirCadastro() {
     var modal = document.getElementById('modalCadastro');
     modal.style.display = "block";
 
-    //  Limpando os dados do formulario de nova tarefa
+    //  Limpando os dados do formulario de cadastro
     document.getElementById("usuario").value = ""
     document.getElementById("cpf").value = ""
     document.getElementById("email").value = ""
@@ -69,20 +54,19 @@ function abrirCadastro() {
 
     sucesso = document.getElementById('conteudoModal')
     sucesso.classList.add("animate__slideInDown")
-    // window.setTimeout(() => {
-    //     sucesso.classList.remove("animate__rubberBand")
-    // },1900)
-    
-    
 }
+
+//  função para fechar o modal de cadastro
 function fecharCadastro() {
     var modal = document.getElementById('modalCadastro');
     modal.style.display = "none"
-    const login = document.getElementById("usuario").value = ""
-    const cpf = document.getElementById("cpf").value = ""
-    const email = document.getElementById("email").value = ""
-    const senha = document.getElementById("senha").value = ""
-    const repetirSenha = document.getElementById("repetirSenha").value = ""
+
+    //  Limpando os dados do formulario de cadastro
+    document.getElementById("usuario").value = ""
+    document.getElementById("cpf").value = ""
+    cdocument.getElementById("email").value = ""
+    document.getElementById("senha").value = ""
+    document.getElementById("repetirSenha").value = ""
    
     document.getElementById("senhaNaoConfere").innerHTML = ""
     document.getElementById("senhaNaoConfere1").innerHTML = ""
@@ -92,23 +76,10 @@ function fecharCadastro() {
     document.getElementById("requeridoSenha").innerHTML = ""
     document.getElementById("requeridoRepetirSenha").innerHTML = ""
 }
-function mascaraCPF(i){
-   
-    var v = i.value;
-    
-    if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
-       i.value = v.substring(0, v.length-1);
-       return;
-    }
-    
-    i.setAttribute("maxlength", "14");
-    if (v.length == 3 || v.length == 7) i.value += ".";
-    if (v.length == 11) i.value += "-";
- 
- }
+
+//  função para receber e salvar o cadastro
 async function cadastro(x, y) {
     console.log(x,y)
-    // assim que os dados são salvo a função "salva" fecha a aba nova tarefa
 
     // recebendo os dados inseridos e imprimindo-os
     const login = document.getElementById("usuario").value;
@@ -119,6 +90,7 @@ async function cadastro(x, y) {
     const checkbox = document.getElementById("checkbox").checked;
     console.log(checkbox)
 
+    // condição para validar senha de cadastro, comparando se as duas senhas digitadas são iguais
     var senhaValidada = ""
     if (senha != repetirSenha) {
         document.getElementById("senhaNaoConfere1").innerHTML = "**Senha não confere"
@@ -185,10 +157,39 @@ async function cadastro(x, y) {
             });
             var modal = document.getElementById('modalCadastro');
             modal.style.display = "none";
+
+            var modal = document.getElementById('modalCadastradoSucesso');
+            modal.style.display = "block";
         }
 }
 }
+
+//  função para usar jeito correto de numeros de CPF
+function mascaraCPF(i){
+   
+    var v = i.value;
+    
+    if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+       i.value = v.substring(0, v.length-1);
+       return;
+    }
+    
+    i.setAttribute("maxlength", "14");
+    if (v.length == 3 || v.length == 7) i.value += ".";
+    if (v.length == 11) i.value += "-";
+ 
+ }
+
+ //  função fechar o modal de cadastrado com sucesso
+ function fecharCadastradoComSucesso() {
+    var modal = document.getElementById('modalCadastradoSucesso');
+            modal.style.display = "none";
+}
+
+ //  função para abrir o modal do login
 function abrirLogin() {
+    var modal = document.getElementById('modalCadastradoSucesso');
+            modal.style.display = "none";
     var modal = document.getElementById('modalLogin');
     modal.style.display = "block";
 
@@ -206,6 +207,57 @@ function abrirLogin() {
     sucesso.classList.add("animate__slideInDown")
     
 }
+
+ //  função para verificar senha e login
+ async function verificacao(x, y) {
+    let resposta = await fetch(`http://54.209.253.104:8000/${x}${y}`)
+    let recebeResposta = await resposta.json()
+    return recebeResposta
+}
+
+ //  função para validar login e senha
+ async function validarLogin() {
+
+    // recebendo os dados inseridos e imprimindo-os
+    const login = document.getElementById("usuarioLogin").value;
+    const senha = document.getElementById("senhaLogin").value;
+    
+    let resposta = await verificacao("users", `?login=${login}&senha=${btoa(senha)}`)
+console.log(resposta)
+    
+    if( resposta.length > 0 ) {
+        document.getElementById("bemVindo").innerHTML = `Seja bem-vindo(a):  ${resposta[0].login}`
+        var modal = document.getElementById('modalLogin');
+        modal.style.display = "none"
+        document.getElementById("nomeUsuario").innerHTML = resposta[0].login
+        var logar = document.getElementById('areaLogin');
+        logar.style.display = "none"
+        var cadastrar = document.getElementById('areaCadastro');
+        cadastrar.style.display = "none"
+        var tela = document.getElementById('fecharTela');
+        tela.style.display = "none"
+        document.getElementById("senhaInvalida").innerHTML = ""
+    } else {
+        document.getElementById("senhaInvalida").innerHTML = "Usuário ou senha inválidos"
+        document.getElementById("senhaInvalida").style.color = "#fbb04d"
+    }
+    window.setTimeout(() => {
+        sucesso = document.getElementById("bemVindo")
+        sucesso.classList.add("animate__fadeOut")
+        sucesso.classList.add("d-none")
+    }, 4000)
+    usuario = login
+    printData(0)
+}
+
+ //  função para fechar modal login
+ function fecharLogin() {
+    var modal = document.getElementById('modalLogin');
+    modal.style.display = "none"
+    document.getElementById("senhaInvalida").innerHTML = ""
+}
+
+ //  função para abrir o modal do esqueci minha senha
 function abrirEsqueciSenha() {
     var modal = document.getElementById('modalRedefinirSenha');
     modal.style.display = "block";
@@ -236,15 +288,14 @@ function abrirEsqueciSenha() {
     
     
 }
-function fecharRedefinirSenha() {
+
+ //  função para fechar o modal de redefinir nova senha
+ function fecharRedefinirSenha() {
     var modal = document.getElementById('modalRedefinirSenha');
     modal.style.display = "none";
 }
-async function verificacao(x, y) {
-    let resposta = await fetch(`http://54.209.253.104:8000/${x}${y}`)
-    let recebeResposta = await resposta.json()
-    return recebeResposta
-}
+
+ //  função para verificar e-mail para redefinir senha
 async function recuperarSenha() {
     const emailRecuperacao = document.getElementById("emailRecuperacao").value;
 
@@ -271,6 +322,8 @@ async function recuperarSenha() {
         }
     }  
 }
+
+ //  função para redefinir a nova senha
 async function redefinirSenha (x) {
     const senhaRecuperacao = document.getElementById("senhaRecuperacao").value;
     const repetirSenhaRecuperacao = document.getElementById("repetirSenhaRecuperacao").value;
@@ -319,46 +372,36 @@ async function redefinirSenha (x) {
     modal.style.display = "none";
 }
 }
-async function validarLogin() {
 
-    // recebendo os dados inseridos e imprimindo-os
-    const login = document.getElementById("usuarioLogin").value;
-    const senha = document.getElementById("senhaLogin").value;
-    
-    let resposta = await verificacao("users", `?login=${login}&senha=${btoa(senha)}`)
-console.log(resposta)
-    
-    if( resposta.length > 0 ) {
-        document.getElementById("bemVindo").innerHTML = `Seja bem-vindo(a):  ${resposta[0].login}`
-        var modal = document.getElementById('modalLogin');
-        modal.style.display = "none"
-        document.getElementById("nomeUsuario").innerHTML = resposta[0].login
-        var logar = document.getElementById('areaLogin');
-        logar.style.display = "none"
-        var cadastrar = document.getElementById('areaCadastro');
-        cadastrar.style.display = "none"
-        var tela = document.getElementById('fecharTela');
-        tela.style.display = "none"
-        document.getElementById("senhaInvalida").innerHTML = ""
-    } else {
-        document.getElementById("senhaInvalida").innerHTML = "Usuário ou senha inválidos"
-        document.getElementById("senhaInvalida").style.color = "#fbb04d"
+//  função para abrir o modal de nova tarefa
+function adicionarTarefa() {
+    var modal = document.getElementById('modal');
+    modal.style.display = "block";
+
+    //  Limpando os dados do formulario de nova tarefa
+    document.getElementById("adicionar").innerHTML = "Adicionar nova tarefa"
+    document.getElementById("num1").value = ""
+    document.getElementById("descreve").value = ""
+    document.getElementById("data").value = ""
+    document.getElementById("selecao").value = ""
+
+    document.getElementById("requerido1").style.display = "none"
+    document.getElementById("requerido2").style.display = "none"
+    document.getElementById("requerido3").style.display = "none"
+    document.getElementById("requerido4").style.display = "none"
+
+    sucesso = document.getElementById('conteudoModal')
+    sucesso.classList.add("animate__slideInDown")
+    // window.setTimeout(() => {
+    //     sucesso.classList.remove("animate__rubberBand")
+    // },1900)
+    document.getElementById("salvar").onclick = () => {
+        salva("novaTarefa", "POST")
     }
-    window.setTimeout(() => {
-        sucesso = document.getElementById("bemVindo")
-        sucesso.classList.add("animate__fadeOut")
-        sucesso.classList.add("d-none")
-    }, 4000)
-    usuario = login
-    printData(0)
 }
-function fecharLogin() {
-    var modal = document.getElementById('modalLogin');
-    modal.style.display = "none"
-    document.getElementById("senhaInvalida").innerHTML = ""
-}
-//  função para fechar a aba de nova tarefa
-function fechar() {
+
+//  função para fechar o modal de nova tarefa
+function fecharModalNovaTarefa() {
 
     sucesso = document.getElementById('conteudoModal')
     sucesso.classList.remove("animate__zoomIn")
@@ -366,22 +409,11 @@ function fechar() {
     var modal = document.getElementById('modal');
     modal.style.display = "none"
 }
-//  função para abrir o filtro
-function abrirFiltro() {
-    var modalFiltro = document.getElementById('modalFiltrar');
-    modalFiltro.style.display = "block";
-    displayFiltro = 1
-}
-//  função para fechar o filtro
-function fecharFilter() {
-    var modalFiltro = document.getElementById('modalFiltrar');
-    modalFiltro.style.display = "none"
-    displayFiltro = 0
-}
-//  função para salvar os dados inseridos e enviar para API
+
+//  função para salvar os dados inseridos de (nova tarefa) e (editar tarefa) enviar para API
 async function salva(x, y) {
 
-    // assim que os dados são salvo a função "salva" fecha a aba nova tarefa
+    // assim que os dados são salvos a função "salva" fecha a aba nova tarefa
 
     // recebendo os dados inseridos e imprimindo-os
     const number = document.getElementById("num1").value;
@@ -389,9 +421,7 @@ async function salva(x, y) {
     const dia = document.getElementById("data").value;
     const statu = document.getElementById("selecao").value;
      
-    // variavel contador adicionando +1
-
-    //  condição para criar campos obrigatórios e somente imprimir se ela se cumprir
+    //  condição para criar campos obrigatórios e somente salvar se ela se cumprir
     if (number === "" ) {
         document.getElementById("requerido1").innerHTML = "*Campo obrigatório"
         document.getElementById("requerido1").style.color = campoObrigatorio
@@ -417,6 +447,7 @@ async function salva(x, y) {
         var modal = document.getElementById('modal');
         modal.style.display = "block"
     } else if (number && descreve && dia && statu != "") {
+        
         // criando o objeto da minha API   
         novaTarefa = {
             usuario: usuario,
@@ -425,6 +456,7 @@ async function salva(x, y) {
             data: dia,
             stat: statu,
         }
+        // enviando os dados para a API
         await fetch(`http://54.209.253.104:8000/${x}`, {
             method: `${y}`,
             headers: {
@@ -438,6 +470,21 @@ async function salva(x, y) {
         console.log("teste")
     }
 }
+
+//  função para abrir o modal de filtro
+function abrirFiltro() {
+    var modalFiltro = document.getElementById('modalFiltrar');
+    modalFiltro.style.display = "block";
+    displayFiltro = 1
+}
+
+//  função para fechar o modal de filtro
+function fecharFilter() {
+    var modalFiltro = document.getElementById('modalFiltrar');
+    modalFiltro.style.display = "none"
+    displayFiltro = 0
+}
+
 //  função para abrir e editar os dados
 async function editarTarefa(idTarefa) {
     var modal = document.getElementById('modal');
@@ -462,6 +509,7 @@ async function editarTarefa(idTarefa) {
         salva(`novaTarefa/${idTarefa}`, "PUT")
     }
 }
+
 //  função para abrir o modal de (tem certeza que deseja excluir)
 function excluirTarefa(x) {
     var modal = document.getElementById('modalExclusao');
@@ -469,6 +517,7 @@ function excluirTarefa(x) {
     excluir = x
     console.log(excluir)
 }
+
 //  função para excluir a tarefa
 async function removeTarefa() {
 
@@ -483,18 +532,64 @@ async function removeTarefa() {
     var modal = document.getElementById('modalExclusao');
     modal.style.display = "none";
 }
+
 //  função para fechar o modal sem excluir a tarefa
 function naoExcluirTarefa() {
     var modal = document.getElementById('modalExclusao');
     modal.style.display = "none";
 }
+
+//  função para imprimir quantas tarefas tem cadastradas
+function contador(){
+    printData(0)
+}
+
+// função para mudar para tema escuro
+function contrasteLight() {
+    ordenação2 = "#1a1033"
+    ordenação1 = "white"
+    campoObrigatorio = "#fbb04d"
+    document.getElementById('novaFolha').setAttribute("href", "assets/styles/estilo2.css")
+    var light = document.getElementById('light');
+    light.style.display = "none";
+    var dark = document.getElementById('dark');
+    dark.style.display = "block";
+    var logo = document.getElementById('logoColorido');
+    logo.style.display = "none";
+    var logo1 = document.getElementById('logoBranca');
+    logo1.style.display = "block";
+    printData('numero','asc')
+}
+
+// função para mudar para tema claro
+function contrasteDark() {
+    ordenação2 = "white"
+    ordenação1 = "#2C2661"
+    campoObrigatorio = "red"
+    document.getElementById('novaFolha').setAttribute("href", "assets/styles/estilo.css")
+    var light = document.getElementById('light');
+    light.style.display = "block";
+    var dark = document.getElementById('dark');
+    dark.style.display = "none";
+    var logo = document.getElementById('logoColorido');
+    logo.style.display = "block";
+    var logo1 = document.getElementById('logoBranca');
+    logo1.style.display = "none";
+    printData('numero','desc')
+}
+
 //  função para imprimir o que é pedido
 async function printData(x, y) {
     console.log(x, y)
+
+    //  variavel para definir a cor do status 
     var corStatus = ""
+
+    // variavel para receber a linha de tarefas
     var linha = ""
-    // condição para saber se é filtro
-    if (displayFiltro === 1) {
+
+    // condição para saber se é comando de filtro 
+        if (displayFiltro === 1) {
         console.log(displayFiltro)
         var palavraChave = ""
         var palavraData = ""
@@ -503,18 +598,23 @@ async function printData(x, y) {
         palavraData = document.getElementById("dataFiltro").value;
         statu = document.getElementById("statusFilter").value;
 
+        // condição para saber se é comando de filtro por palavra
         if (palavraChave != "") {
             var resposta = await fetch(`http://54.209.253.104:8000/novaTarefa?q=${palavraChave}&usuario=${usuario}`)
             var recebeTarefas = await resposta.json()
             palavraChave = document.getElementById("palavraFiltro").value = ""
             console.log(palavraChave)
         }
+
+        // condição para saber se é comando de filtro por data
         if (palavraData != "") {
             var resposta = await fetch(`http://54.209.253.104:8000/novaTarefa?q=${palavraData}&usuario=${usuario}`)
             var recebeTarefas = await resposta.json()
             document.getElementById("dataFiltro").value = ""
             console.log(palavraData)
         }
+
+        // condição para saber se é comando de filtro por status
         if (statu != "") {
             var resposta = await fetch(`http://54.209.253.104:8000/novaTarefa?q=${statu}&usuario=${usuario}`)
             var recebeTarefas = await resposta.json()
@@ -523,6 +623,7 @@ async function printData(x, y) {
             console.log(recebeTarefas)
         }
     }
+
     // condição para saber se é ordenação
     if (x != undefined && y != undefined) {
         var resposta = await fetch(`http://54.209.253.104:8000/novaTarefa?_sort=${x}&_order=${y}&usuario=${usuario}`)
@@ -564,6 +665,7 @@ async function printData(x, y) {
             seta8.style.color = ordenação2;
         }
     }
+
     // condição para saber se é impressão de adição e edição
     if (x === 0) {
         console.log(x)
@@ -572,7 +674,11 @@ async function printData(x, y) {
     }
 
     console.log(recebeTarefas)
+
+    // variavel para contar quantas tarefas estão sendo imprimidas
     var i = 0
+
+    // função para correr todas as tarefas a serem impressas
     recebeTarefas.forEach((novaTarefa) => {
         i++
         // condição para definir a cor dos status
@@ -584,7 +690,7 @@ async function printData(x, y) {
             corStatus = "red"
         }
 
-        // variavel recebendo a linha de código a ser impressa no HTML
+        // variavel recebendo a linha de código a ser impressa no HTML (linha de codigo a ser impressa no index)
         linha = linha + `  
     <tr id="linha${novaTarefa.id}">
         <td id="n${novaTarefa.id}">${novaTarefa.numero}</td>
@@ -595,43 +701,20 @@ async function printData(x, y) {
         <i id="remove${novaTarefa.id}" class="iconeRemove fa-solid fa-trash-can ms-1" onclick="excluirTarefa('${novaTarefa.id}');"></i></td>
     </tr>
         `
-        // <div id="linha${novaTarefa.id}" class="row linha1">
-        // <div id="n${novaTarefa.id}" class="col-2 p-0 numero mb-2">${novaTarefa.numero}</div>
-        // <div id="descricao${novaTarefa.id}" class="descricao col-3 p-0">${novaTarefa.descri}</div>
-        // <div id="data${novaTarefa.id}" class="datas1 col-2 p-0">${novaTarefa.data.split('-').reverse().join('/')}</div>
-        // <div id="status${novaTarefa.id}" class="col-2 p-0 ${corStatus} status">${novaTarefa.stat}</div>
-        // <div class="col-2 ms-3 p-0"><i id="edicao${novaTarefa.id}" class="iconeEdicao fa-solid fa-pen-to-square" onclick="editarTarefa('${novaTarefa.id}');"></i>  
-        // <i id="remove${novaTarefa.id}" class="iconeRemove fa-solid fa-trash-can ms-1" onclick="excluirTarefa('${novaTarefa.id}');"></i></div>
-        // </div>
     })
     
     
     modal.style.display = "none"
     document.getElementById("tarefas").innerHTML = linha
+
+    // condição para saber se a tarefa é singular ou plural
     if (i == 1){
     document.getElementById("contador").innerHTML = i + " tarefa encontrada"
     } else {
       document.getElementById("contador").innerHTML = i + " tarefas encontradas"
     }
 }
-//  função para alerta de sucesso no cadastro
-function cadastradoComSucesso() {
-    var sucesso
-    sucesso = document.getElementById("alerta-sucesso")
-    sucesso.innerHTML = 'Comando executado.'
-    sucesso.classList.add("animate__fadeInUp")
-    sucesso.classList.remove("d-none")
 
-    window.setTimeout(() => {
-        sucesso.classList.remove("animate__fadeInUp")
-        sucesso.classList.add("animate__fadeOutDown")
-    }, 1000)
-
-    window.setTimeout(() => {
-        sucesso.classList.remove("animate__fadeOutDown")
-        sucesso.classList.add("d-none")
-    }, 1500)
-}
 //  função para alerta de nenhuma tarefa cadastrada
 function erroNoCadastro() {
     var sucesso
@@ -651,8 +734,9 @@ function erroNoCadastro() {
         sucesso.classList.add("d-none")
     }, 1500)
 }
+
 //  função para alerta de tarefa removida
-function removendoTarefa() {
+function tarefaRemovida() {
     var sucesso
     sucesso = document.getElementById("alerta-remove")
     sucesso.innerHTML = 'Tarefa removida.'
@@ -670,6 +754,7 @@ function removendoTarefa() {
         sucesso.classList.add("d-none")
     }, 1500)
 }
+
 //  função para alerta de sucesso na edição do cadastro
 function edicaoConcluida() {
     sucesso = document.getElementById("alerta-edicao")
@@ -688,37 +773,24 @@ function edicaoConcluida() {
         sucesso.classList.add("d-none")
     }, 1500)
 }
-function contador(){
-    printData(0)
+
+//  função para alerta de sucesso no cadastro
+function cadastradoComSucesso() {
+    var sucesso
+    sucesso = document.getElementById("alerta-sucesso")
+    sucesso.innerHTML = 'Comando executado.'
+    sucesso.classList.add("animate__fadeInUp")
+    sucesso.classList.remove("d-none")
+
+    window.setTimeout(() => {
+        sucesso.classList.remove("animate__fadeInUp")
+        sucesso.classList.add("animate__fadeOutDown")
+    }, 1000)
+
+    window.setTimeout(() => {
+        sucesso.classList.remove("animate__fadeOutDown")
+        sucesso.classList.add("d-none")
+    }, 1500)
 }
-function contrasteLight() {
-    ordenação2 = "#1a1033"
-    ordenação1 = "white"
-    campoObrigatorio = "#fbb04d"
-    document.getElementById('novaFolha').setAttribute("href", "assets/styles/estilo2.css")
-    var light = document.getElementById('light');
-    light.style.display = "none";
-    var dark = document.getElementById('dark');
-    dark.style.display = "block";
-    var logo = document.getElementById('logoColorido');
-    logo.style.display = "none";
-    var logo1 = document.getElementById('logoBranca');
-    logo1.style.display = "block";
-    printData('numero','asc')
-}
-function contrasteDark() {
-    ordenação2 = "white"
-    ordenação1 = "#2C2661"
-    campoObrigatorio = "red"
-    document.getElementById('novaFolha').setAttribute("href", "assets/styles/estilo.css")
-    var light = document.getElementById('light');
-    light.style.display = "block";
-    var dark = document.getElementById('dark');
-    dark.style.display = "none";
-    var logo = document.getElementById('logoColorido');
-    logo.style.display = "block";
-    var logo1 = document.getElementById('logoBranca');
-    logo1.style.display = "none";
-    printData('numero','desc')
-}
+
 

@@ -137,7 +137,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <form class="formLogin" action="">
                                     <label for="">Usuário</label>  <br>
                                     <input id="usuarioLogin" type="text" maxlength="15"><br>
@@ -169,6 +168,34 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="modalCadastradoSucesso" class="modalLogar">
+                        <div class="container ">
+                            <div id="conteudoModal" class="conteudoLogin alert animate__animated">
+
+                                <div class="row">
+                                    <div class="col-10">
+                                        <span>Cadastro realizado com sucesso</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="cancela">
+                                            <button id="cancelarCadastro" onclick="fecharCadastradoComSucesso();"> <img src="assets/img/close.png"
+                                                    width="14px" height="15px" alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4 align-items-left"></div>
+                                    <div class="col-2 align-items-center ms-2 mt-2">
+                                        <div class="salvar">
+                                            <button id="Entrar" class="enviar" onclick="abrirLogin();">Login</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 align-items-left"></div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
 
                     <div id="modalRedefinirSenha" class="modalLogar">
                         <div class="container ">
@@ -307,7 +334,7 @@
                     </div>
                     <div class="col-2 mt-1">
                         <div class="cancela">
-                            <button id="cancelarCadastro" onclick="fechar();"> <img src="assets/img/close.png" width="14px"
+                            <button id="cancelarCadastro" onclick="fecharModalNovaTarefa();"> <img src="assets/img/close.png" width="14px"
                                     height="15px" alt=""></button>
                         </div>
                     </div>
@@ -478,6 +505,3 @@
 
 </html>
 
-<!-- icone contraste: <i class="fa-solid fa-circle-half-stroke"></i>
-icone lua: <i class="fa-solid fa-moon"></i>
-icone sol: <i class="fa-solid fa-sun"></i> -->

@@ -11,17 +11,6 @@ body {
     background-attachment: fixed;
     background-color: #1a1033;
 }
-.areaDeLogin {
-    display: block;
-}
-.login {
-    text-align: right;
-}
-
-/* .faixaAmarela {
-    background: url("barra-amarela.png") bottom right no-repeat rgba(255, 255, 255, 0);
-    background-attachment: fixed;
-} */
 
 .fundo {
     width: 100%;
@@ -34,6 +23,25 @@ body {
     width: 100%;
     height: 90px;
     border-bottom: 8px solid #fbb04d;
+}
+.chamada {
+    color: #fbb04d;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 57px;
+}
+.informacao {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 34px;
+    margin-top: 30px;
+}
+.areaDeLogin {
+    display: block;
+}
+.login {
+    text-align: right;
 }
 .logoLogin {
     width: 140px;
@@ -49,18 +57,45 @@ body {
     color: #c8780f;
     cursor: pointer;
 }
-.chamada {
-    color: #fbb04d;
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 57px;
+#modalRedefinirSenha {
+    display: none;
 }
-.informacao {
-    font-size: 22px;
-    color: #fff;
-    font-weight: 400;
-    line-height: 34px;
-    margin-top: 30px;
+.conteudoLogin{
+    width: 40%;
+    height: auto;
+    background-color: #300d45;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 0 auto;
+}
+.conteudoLogin span {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fbb04d;
+}
+.checkbox2 {
+    display: flex;
+    align-items: flex-start;
+}
+.cadastro, .checkbox2 span, .formLogin, .esqueciSenha{
+    font-size: 12px;
+    font-weight: 300;
+    color: #ffffff;
+}
+.cadastro input, .formLogin input {
+    height: 25px;
+    border-radius: 5px;
+}
+.checkbox1 {
+    margin-right: 10px;
+    margin-bottom: 20px;
+    width: 15px;
+    height: 15px;
+}
+.checkbox2 span:hover, select, .esqueciSenha:hover,
+.cancela button:hover, .cancelaFilter button:hover, .seta:hover{
+    color:rgb(168, 168, 168);
+    cursor: pointer;    
 }
 .barra1 {
     position: fixed;
@@ -68,6 +103,22 @@ body {
     width: 41px;
     height: 100%;
     border-right: 10px solid #fbb04d;
+}
+.bemVindo{
+    font-weight: 400;
+    color: #fbb04d;
+    line-height: 30px;
+    font-size: 20px;
+    margin-left: 5px;
+}
+.nomeDeUsuario, .sair, .contraste {
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    text-align: right;
+}
+.contraste {
+    text-align: left;
 }
 .gerenciador {
     display: flex;
@@ -81,16 +132,9 @@ body {
     font-size: 20px;
     margin-left: 5px;
 }
-.Filter span,  .novaTarefa span,
+.novaTarefa span, .Filter span,
 .conteudo span, .exclusao p{
     font-weight: 800;
-    color: #fbb04d;
-    line-height: 30px;
-    font-size: 20px;
-    margin-left: 5px;
-}
-.bemVindo{
-    font-weight: 400;
     color: #fbb04d;
     line-height: 30px;
     font-size: 20px;
@@ -129,14 +173,8 @@ table {
     width: 85%;
     margin-bottom: 50px;
 }
-.nomeDeUsuario, .sair, .contraste {
-    font-size: 18px;
-    font-weight: 300;
-    color: white;
-    text-align: right;
-}
-.contraste {
-    text-align: left;
+.seta {
+    margin-left: 5px;
 }
 .cabecario, .tarefas, .linhas {
     font-size: 15px;
@@ -158,6 +196,7 @@ th i, .linhas i {
 tbody>tr:nth-child(even), .linhas>.linha1:nth-child(even) {
     background-color: #37104e;
 }
+
 .modalTarefa, .modalFilter, .modalExclusao1,
 .modalCadastrar, .modalLogar{
     position: fixed;
@@ -177,54 +216,6 @@ tbody>tr:nth-child(even), .linhas>.linha1:nth-child(even) {
     border-radius: 10px;
     padding: 30px;
     margin: 0 auto;
-}
-.conteudoLogin{
-    width: 40%;
-    height: auto;
-    background-color: #300d45;
-    border-radius: 10px;
-    padding: 30px;
-    margin: 0 auto;
-}
-.conteudoLogin span {
-    font-size: 20px;
-    font-weight: 800;
-    color: #fbb04d;
-}
-.checkbox2 {
-    display: flex;
-    align-items: flex-start;
-}
-.cadastro, .checkbox2 span, .formLogin, .esqueciSenha{
-    font-size: 12px;
-    font-weight: 300;
-    color: #ffffff;
-}
-.cadastro input, .formLogin input {
-    height: 25px;
-    border-radius: 5px;
-}
-.checkbox1 {
-    margin-right: 10px;
-    margin-bottom: 20px;
-    width: 15px;
-    height: 15px;
-}
-.iconeEdicao, .iconeRemove {
-    font-weight: lighter;
-}
-.checkbox2 span:hover, select, .esqueciSenha:hover,
-.cancela button:hover, .cancelaFilter button:hover, .seta:hover{
-    color:rgb(168, 168, 168);
-    cursor: pointer;    
-}
-.iconeRemove:hover {
-    color:#ff0000;
-    cursor: pointer;    
-}
-.iconeEdicao:hover{
-    color:#008000;
-    cursor: pointer;    
 }
 form {
     font-size: 14px;
@@ -267,6 +258,19 @@ select option {
     border: none;
     margin-left: 10px;
 }
+.iconeEdicao, .iconeRemove {
+    font-weight: lighter;
+}
+
+.iconeRemove:hover {
+    color:#ff0000;
+    cursor: pointer;    
+}
+.iconeEdicao:hover{
+    color:#008000;
+    cursor: pointer;    
+}
+
 .alerta-1 {
     width: 300px;
     height: 50px;
@@ -336,12 +340,6 @@ select option {
     display: block;
 }
 #logoBranca {
-    display: none;
-}
-.seta {
-    margin-left: 5px;
-}
-#modalRedefinirSenha {
     display: none;
 }
 
